@@ -129,11 +129,11 @@
                     <label class="mr-sm-2" for="question8">I walk through the hallways inside my mind.</label>
                     <select class="custom-select mr-sm-2" id="question8">
                         <option selected>Select an option...</option>
-                        <option value="1">1 (Strongly Disagree)</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5 (Strongly Agree)</option>
+                        <option value=1>1 (Strongly Disagree)</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5 (Strongly Agree)</option>
                     </select>
                 </div>
             </div>
@@ -207,11 +207,13 @@
     $("#newFriend").on("click", function (event) {
         event.preventDefault();
 
-        var friendInput = {
+        let friendInput = {
             name: $("#nameInput").val().trim(),
             photo: $("#imgInput").val().trim(),
-            scores: [
-                parseInt($("#question1").val(), 10),
+            scores:[]
+        };
+
+        let scores = [
                 $("#question1").val().trim(),
                 $("#question2").val().trim(),
                 $("#question3").val().trim(),
@@ -223,17 +225,28 @@
                 $("#question9").val().trim(),
                 $("#question10").val().trim()
             ]
-        };
+        ;
+        
+        console.log(scores);
+        
+        let scoresArr = [];
 
+        for (var i = 0; i < scores.length; i++ ){
+            scoresArr.push(parseInt(scores[i].split(",").map(Number)));
+        }
+        
+        console.log(scoresArr);
+        friendInput.scores += scoresArr;
+        
         console.log(friendInput);
 
-        $.post("/api/friends", friendInput,
-            function (data) {
-                if (data) {
-                    alert("Yay")
-                } else {
-                    alert("Fill out the form!");
-                }
-            })
+        // $.post("/api/friends", friendInput,
+        //     function (data) {
+        //         if (data) {
+        //             alert("Yay")
+        //         } else {
+        //             alert("Fill out the form!");
+        //         }
+        //     })
     })
 </script>
