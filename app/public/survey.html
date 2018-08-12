@@ -166,32 +166,74 @@
             <hr>
             <div class="form-row">
                 <div class="col-md-12 offset-md-5">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-info" id="newFriend" data-toggle="modal" data-target="#exampleModal">
                         Find a Friend
                     </button>
                 </div>
             </div>
         </form>
+        <br>
+        <br>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Result</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <h3>Friend found!</h3>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="/api/friends">API Friends Link</a> |
+                <a href="https://github.com/kevnat/friend-finder">GitHub Repo</a>
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>
+<script type="text/javascript">
+    $("#newFriend").on("click", function (event) {
+        event.preventDefault();
+
+        var friendInput = {
+            name: $("#nameInput").val().trim(),
+            photo: $("#imgInput").val().trim(),
+            scores: [
+                parseInt($("#question1").val(), 10),
+                $("#question1").val().trim(),
+                $("#question2").val().trim(),
+                $("#question3").val().trim(),
+                $("#question4").val().trim(),
+                $("#question5").val().trim(),
+                $("#question6").val().trim(),
+                $("#question7").val().trim(),
+                $("#question8").val().trim(),
+                $("#question9").val().trim(),
+                $("#question10").val().trim()
+            ]
+        };
+
+        console.log(friendInput);
+
+        $.post("/api/friends", friendInput,
+            function (data) {
+                if (data) {
+                    alert("Yay")
+                } else {
+                    alert("Fill out the form!");
+                }
+            })
+    })
+</script>
