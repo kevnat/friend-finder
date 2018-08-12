@@ -210,43 +210,65 @@
         let friendInput = {
             name: $("#nameInput").val().trim(),
             photo: $("#imgInput").val().trim(),
-            scores:[]
+            scores: []
         };
 
         let scores = [
-                $("#question1").val().trim(),
-                $("#question2").val().trim(),
-                $("#question3").val().trim(),
-                $("#question4").val().trim(),
-                $("#question5").val().trim(),
-                $("#question6").val().trim(),
-                $("#question7").val().trim(),
-                $("#question8").val().trim(),
-                $("#question9").val().trim(),
-                $("#question10").val().trim()
-            ]
-        ;
-        
-        console.log(scores);
-        
-        let scoresArr = [];
+            $("#question1").val().trim(),
+            $("#question2").val().trim(),
+            $("#question3").val().trim(),
+            $("#question4").val().trim(),
+            $("#question5").val().trim(),
+            $("#question6").val().trim(),
+            $("#question7").val().trim(),
+            $("#question8").val().trim(),
+            $("#question9").val().trim(),
+            $("#question10").val().trim()
+        ];
 
-        for (var i = 0; i < scores.length; i++ ){
-            scoresArr.push(parseInt(scores[i].split(",").map(Number)));
-        }
+        // let scoresArr = [];
+
+        console.log(scores);
+
+        scoresVals = scores.map(Number);
+        console.log(scoresVals);
+        Array.prototype.push.apply(friendInput.scores,scoresVals);
+        console.log(friendInput.scores);
+        // for (var i = 0; i < scores.length; i++) {
+        //     scoresArr.push(scores[i].split(",").map(Number));
+        // }
         
-        console.log(scoresArr);
-        friendInput.scores += scoresArr;
-        
+        // friendInput.scores += scoresVals;
         console.log(friendInput);
+
 
         // $.post("/api/friends", friendInput,
         //     function (data) {
+
+        //         // If a table is available... tell user they are booked.
         //         if (data) {
-        //             alert("Yay")
-        //         } else {
-        //             alert("Fill out the form!");
+        //             alert("Yay! you've found a friend!");
         //         }
-        //     })
-    })
+
+        //         // If a table is available... tell user they on the waiting list.
+        //         else {
+        //             alert("Sorry you are on the wait list");
+        //         }
+
+        //         // Clear the form when submitting
+        //         $("#nameInput").val("");
+        //         $("#imgInput").val("");
+        //         $("#question1").val("");
+        //         $("#question2").val("");
+        //         $("#question3").val("");
+        //         $("#question4").val("");
+        //         $("#question5").val("");
+        //         $("#question6").val("");
+        //         $("#question7").val("");
+        //         $("#question8").val("");
+        //         $("#question9").val("");
+        //         $("#question10").val("");
+        //     });
+
+    });
 </script>
