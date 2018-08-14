@@ -13,7 +13,8 @@ var friendsArray = [
             5,
             4,
             1
-          ]
+          ],
+        sum: 30
       }
   ];
 

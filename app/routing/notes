@@ -1,0 +1,13 @@
+// for (var f = 0; f < friends.length; f++) {
+                //     try {
+                //         if (friends[i].sum !== req.body.sum) {
+                //             console.log(req.body.sum);
+                //         } else {
+                //             console.log(friends[i].sum);
+                //         }
+                //     } catch (err) {
+
+                //     }
+                // }
+        //     }
+        // });
